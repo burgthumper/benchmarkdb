@@ -1,0 +1,44 @@
+# Use root/example as user/password credentials
+version: '3.1'
+
+services:
+
+  mysql:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: edward
+      MYSQL_USER: edward
+      MYSQL_PASSWORD: edward
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./config/mysql:/etc/mysql/conf.d
+    ports:
+      - 3306:3306
+
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: edward
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+      - ./config/postgres:/etc/postgresql
+    ports:
+      - 5432:5432
+
+  timescale:
+    image: timescale/timescaledb:latest-pg12
+    restart: always
+    volumes:
+      - ./data/timescale:/val/lib/postgresql/data
+      - ./config/postgres:/etc/postgresql
+    ports:
+      - 5433:5432
+  
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
