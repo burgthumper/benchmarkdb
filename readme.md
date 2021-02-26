@@ -25,7 +25,7 @@ apt-get install timescaledb-2-postgresql-12 -y &&\
 timescaledb-tune --quiet --yes &&\
 apt-get install vim -y &&\
 
-echo 'host	all		all  		0.0.0.0/0 		trust
+echo 'host      all		    all  		0.0.0.0/0 		trust
 ' >> /etc/postgresql/12/main/pg_hba.conf &&\
 echo 'host  	all  		all    		::/0    		trust
 ' >> /etc/postgresql/12/main/pg_hba.conf &&\
@@ -33,8 +33,9 @@ echo 'host  	all  		all    		::/0    		trust
 service postgresql restart &&\
 chsh -s /bin/bash
 ```
+* `/etc/postgresql/12/main/pg_hba.conf`
 
-In: `/etc/postgresql/12/main/pg_hba.conf`, in the host and local section, change both auth values to `trust`
+In: , in the host and local section, change both auth values to `trust`
 change `listen_address = 'localhost'` to `listen_address = *` in `/etc/postgresql/12/main/postgresql.conf`
 
 https://bigbinary.com/blog/configure-postgresql-to-allow-remote-connection
@@ -48,7 +49,8 @@ Always quit with ctrl+c, ctrl+z will leave hanging containers
 
 ## Managing Running Containers
 List running containers:  `docker ps`
-
+## wsl
+launch from powershell: `ubuntu2004`
 ## Connecting to Containers SSH
 `docker exec -it` (or open from the Docker GUI client)
 To get BASH shell: `/bin/bash`
@@ -63,3 +65,4 @@ Login to postgres console: `psql -U postgres`
 # Volumes
 Useful explanation: https://www.youtube.com/watch?v=VOK06Q4QqvE
 Regarding Dockerfile volume command: "Every time you create a container from this image, docker will force that directory to be a volume. If you do not provide a volume in your run command, or compose file, the only option for docker is to create an anonymous volume. This is a local named volume with a long unique id for the name and no other indication for why it was created or what data it contains (anonymous volumes are were data goes to get lost). If you override the volume, pointing to a named or host volume, your data will go there instead."
+https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly#ensure-volume-mounts-work

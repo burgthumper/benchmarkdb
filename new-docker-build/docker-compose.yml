@@ -6,10 +6,15 @@ services:
     image: benchmark_main:latest
     restart: always
     volumes:
-      - ./volumes/mysql/data:/var/lib/mysql/
-      - ./volumes/mysql/config:/etc/mysql/conf.d/
-      - ./volumes/postgres/config:/etc/postgresql/12/main/
-      - ./volumes/postgres/data:/var/lib/postgresql/12/main/
+      # - /mnt/c/Users/Miles/Desktop/benchmarkdb/new-docker-build/volumes/mysql/data:/var/lib/mysql/
+      # - /mnt/c/Users/Miles/Desktop/benchmarkdb/new-docker-build/volumes/mysql/config:/etc/mysql/conf.d/
+      # - /mnt/c/Users/Miles/Desktop/benchmarkdb/new-docker-build/volumes/postgres/config:/etc/postgresql/12/main/
+      # - /mnt/c/Users/Miles/Desktop/benchmarkdb/new-docker-build/volumes/postgres/data:/var/lib/postgresql/12/main/
+      - /c/Users/Miles/Desktop/benchmarkdb/new-docker-build/volumes/mysql/data:/var/lib/mysql/
+      - /c/Users/Miles/Desktop/benchmarkdb/new-docker-build/volumes/mysql/mysql-files:/var/lib/mysql-files
+      - /c/Users/Miles/Desktop/benchmarkdb/new-docker-build/volumes/mysql/config:/etc/mysql/conf.d/
+      - /c/Users/Miles/Desktop/benchmarkdb/new-docker-build/volumes/postgres/config:/etc/postgresql/12/main/
+      - /c/Users/Miles/Desktop/benchmarkdb/new-docker-build/volumes/postgres/data:/var/lib/postgresql/12/main/
     environment:
       MYSQL_ROOT_PASSWORD: 'edward'
       POSTGRES_USER: 'edward'

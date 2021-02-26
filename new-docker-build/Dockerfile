@@ -80,6 +80,7 @@ RUN { \
 	&& chmod 1777 /var/run/mysqld /var/lib/mysql
 
 VOLUME /var/lib/mysql
+VOLUME /etc/mysql/conf.d
 
 # Config files
 COPY requirements/mysql/config/ /etc/mysql/
