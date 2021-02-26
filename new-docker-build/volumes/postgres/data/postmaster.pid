@@ -1,0 +1,8 @@
+628
+/var/lib/postgresql/12/main
+1614319958
+5432
+/var/run/postgresql
+*
+  5432001    131072
+ready   
