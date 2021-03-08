@@ -1,6 +1,15 @@
 # Timescale, MySQL, Postgres Docker Image Documentation
 Miles Watson, 2-25-20
 
+# Updated steps (As of March 7th)
+Setup the following directory structure:
+/mnt/wsl/docker-desktop/volumes
+								/mysql
+									/data
+									/mysql-files
+								/postgres
+									/data
+
 ## Building
 To build the image, run `docker build . --tag benchmark_main` in the docker root directory (new-docker-build)
 

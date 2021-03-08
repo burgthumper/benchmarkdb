@@ -1,6 +1,5 @@
 FROM debian:buster-slim
 
-# ******************MySQL******************
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
 RUN groupadd -r mysql && useradd -r -g mysql mysql
 
@@ -80,7 +79,6 @@ RUN { \
 	&& chmod 1777 /var/run/mysqld /var/lib/mysql
 
 VOLUME /var/lib/mysql
-VOLUME /etc/mysql/conf.d
 
 # Config files
 COPY requirements/mysql/config/ /etc/mysql/
@@ -89,7 +87,27 @@ RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh # backwards compat
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 3306 33060
-CMD ["mysqld"]
 
 # ************************Postgres and Timescale
-VOLUME /etc/postgresql/12/main
+RUN apt-get update &&\
+echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" | tee /etc/apt/sources.list.d/pgdg.list &&\
+apt-get install wget -y &&\
+wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add - &&\
+apt-get update &&\
+
+sh -c "echo 'deb https://packagecloud.io/timescale/timescaledb/debian/ buster main' > /etc/apt/sources.list.d/timescaledb.list" &&\
+wget --quiet -O - https://packagecloud.io/timescale/timescaledb/gpgkey | apt-key add - &&\
+apt-get update &&\
+apt-get install timescaledb-2-postgresql-12 -y &&\
+timescaledb-tune --quiet --yes &&\
+apt-get install vim -y &&\
+service postgresql restart
+
+RUN service postgresql stop
+RUN rm /etc/postgresql/12/main/pg_hba.conf &\
+	rm /etc/postgresql/12/main/postgresql.conf
+# Copy postgres custom configs
+COPY requirements/postgres_configs/pg_hba.conf /etc/postgresql/12/main/pg_hba.conf
+COPY requirements/postgres_configs/postgresql.conf /etc/postgresql/12/main/postgresql.conf
+
+CMD ["mysqld"]
