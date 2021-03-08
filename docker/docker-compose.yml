@@ -8,7 +8,7 @@ services:
     volumes:
       - /mnt/wsl/docker-desktop/volumes/mysql/data:/var/lib/mysql
       - /mnt/wsl/docker-desktop/volumes/mysql/mysql-files:/var/lib/mysql-files
-      - /mnt/wsl/docker-desktop/volumes/postgres/data:/var/lib/postgresql/12/main
+      #- /mnt/wsl/docker-desktop/volumes/postgres/data:/var/lib/postgresql/12/main
       # - /mnt/c/docker/volumes/mysql/data:/var/lib/mysql
       # - /mnt/c/docker/volumes/mysql/mysql-files:/var/lib/mysql-files
       # - /mnt/c/docker/volumes/postgres/data:/var/lib/postgresql/12/main
