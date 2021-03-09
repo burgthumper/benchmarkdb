@@ -22,9 +22,13 @@ options = "metadata,umask=22,fmask=11"
 ```
 
 # Github Instructions
+
 Pull: `git pull`
 
 Comit instructions:
+
 add: `git add *`
+
 commit: `git commit -a -m 'message'`
+
 push: `git push origin development`
