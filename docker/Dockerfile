@@ -109,7 +109,7 @@ RUN rm /etc/postgresql/12/main/pg_hba.conf &\
 # Copy postgres custom configs
 COPY requirements/postgres_configs/pg_hba.conf /etc/postgresql/12/main/pg_hba.conf
 COPY requirements/postgres_configs/postgresql.conf /etc/postgresql/12/main/postgresql.conf
-#VOLUME /var/lib/postgresql/12/main
+VOLUME /var/lib/postgresql
 RUN service postgresql start
 
 CMD ["mysqld"]

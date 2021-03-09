@@ -6,6 +6,7 @@
 import create_inserts
 import tsload
 import tsload_exec_many
+import tsload_fake_cpu
 
 
 def print_hi(name):
@@ -22,15 +23,16 @@ while x==True:
     badInput = False
     print("Operations:")
     print("1: insert CPU (timeseries) data in support database")
-    #print("3: ExecMany insert CPU (timeseries) data in support database")
     print("2: create sql inserts for benchmark databases")
+    print("3: create inserts for fake CPU (timeseries) data in support database")
+    #print("4: ExecMany insert CPU (timeseries) data in support database")
     print("0: EXIT")
     print("Select Operation (enter integer):")
     try:
         value = int(input())
         print("value = ")
         print(value)
-        if 0 <= value <= 2:
+        if 0 <= value <= 3:
             x=False
         else:
             badInput = True
@@ -47,25 +49,38 @@ if(value==1):
     tsload.insertCPUValues()
 
 if(value==3):
+    dbs = ['pg']
+    # pg
+    # ts
+    # mysql
+    max_lines = 250000
+    # 1 ~ debugging
+    # 250000 ~ initial (small) tests
+    # 9999999 ~ full tests
+
     print_hi('Zippy3')
     #tsload.HelloWorld()
-    tsload_exec_many.insertCPUValues()
+    tsload_fake_cpu.insertCPUValues(dbs, max_lines)
 
+if(value==4):
+    print_hi('Zippy4')
+    #tsload_exec_many.insertCPUValues()
 
-tables = 'both'
-#coupon_issued
-#coupon_transaction
-#both
-dbs = ['pg']
-#pg
-#ts
-#mysql
-max_lines = 250000
-#1 ~ debugging
-#250000 ~ initial (small) tests
-#9999999 ~ full tests
 
 if(value==2):
+    tables = 'both'
+    # coupon_issued
+    # coupon_transaction
+    # both
+    dbs = ['pg']
+    # pg
+    # ts
+    # mysql
+    max_lines = 2
+    # 1 ~ debugging
+    # 250000 ~ initial (small) tests
+    # 9999999 ~ full tests
+
     create_inserts.create_inserts(tables, dbs, max_lines)
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
