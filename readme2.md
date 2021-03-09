@@ -20,3 +20,11 @@ Potential /etc/wsl.conf fix:
 enabled = true
 options = "metadata,umask=22,fmask=11"
 ```
+
+# Github Instructions
+Pull: `git pull`
+
+## Commit instructions
+add: `git add *`
+commit: `git commit -a -m 'message'`
+push: `git push origin development`
