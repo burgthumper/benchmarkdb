@@ -20,8 +20,10 @@ To bring down the docker container from Windows Terminal
 To start the container and services from Windows Terminal
    PS C:\projects\benchmarkdb\docker> docker build . --tag benchmark_main
    PS C:\projects\benchmarkdb\docker> docker volume create pgdata
+     alternative ~ pwd
      alternative ~ docker volume create --driver local --opt device=C:\projects\benchmarkdb\docker\volumes\pgdata --opt type=none --name pgdata
    PS C:\projects\benchmarkdb\docker> docker volume create mysqldata
+     alternative ~ pwd
      alternative ~ docker volume create --driver local --opt device=C:\projects\benchmarkdb\docker\volumes\mysqldata --opt type=none --name mysqldata
    PS C:\projects\benchmarkdb\docker> docker-compose up -d
    get container id
