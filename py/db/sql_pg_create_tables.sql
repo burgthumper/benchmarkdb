@@ -13,8 +13,10 @@ TABLESPACE pg_default;
 
 ALTER TABLE benchmarkpg.cpu_test
     OWNER to postgres;
+	
+##-------------------------------------------------
 
-set search_path = benchmarkpg;
+set search_path = benchmarkpg_schema;
 CREATE TABLE restaurants (
   restaurant_id character varying(6) NOT NULL,
   address character varying(200) DEFAULT NULL,
@@ -32,7 +34,7 @@ CREATE TABLE restaurants (
   mrt character varying(200) DEFAULT NULL,
   dma character varying(3) DEFAULT NULL,
   PRIMARY KEY (restaurant_id)
-) 
+);
 
 CREATE TABLE daily_coupon_redemptions_per_restaurant (
   summary_date date NOT NULL,
@@ -40,7 +42,7 @@ CREATE TABLE daily_coupon_redemptions_per_restaurant (
   restaurant_id character varying(6) NOT NULL,
   redemption_count integer DEFAULT '0',
   PRIMARY KEY (summary_date,coupon_id,restaurant_id)
-) 
+);
 
 CREATE TABLE cpu (
   ts timestamp NULL DEFAULT CURRENT_TIMESTAMP,
@@ -87,7 +89,7 @@ CREATE INDEX barcode_INDEX ON coupon_issued (coupon_barcode);
 
 
 CREATE TABLE coupon_transaction (
-  id integer NOT NULL SERIAL,
+  id SERIAL,
   type character varying(20) NOT NULL,
   status integer NOT NULL,
   utc_timestamp timestamp NOT NULL,
@@ -114,4 +116,4 @@ CREATE TABLE coupon_transaction (
   basket_discounted_category character varying(200) DEFAULT NULL,
   PRIMARY KEY (id),
   UNIQUE (id)
-) 
+); 

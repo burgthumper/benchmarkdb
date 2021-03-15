@@ -1,4 +1,11 @@
+CREATE DATABASE benchmarkts;
 
+
+CREATE EXTENSION IF NOT EXISTS timescaledb;
+
+
+##CREATE SCHEMA benchmarkts_schema;
+	
 CREATE SCHEMA benchmarkts_schema
     AUTHORIZATION postgres;
 	
@@ -23,7 +30,7 @@ CREATE TABLE restaurants (
   mrt character varying(200) DEFAULT NULL,
   dma character varying(3) DEFAULT NULL,
   PRIMARY KEY (restaurant_id)
-) 
+);
 
 CREATE TABLE daily_coupon_redemptions_per_restaurant (
   summary_date date NOT NULL,
@@ -31,7 +38,7 @@ CREATE TABLE daily_coupon_redemptions_per_restaurant (
   restaurant_id character varying(6) NOT NULL,
   redemption_count integer DEFAULT '0',
   PRIMARY KEY (summary_date,coupon_id,restaurant_id)
-) 
+);
 
 set search_path = benchmarkts_schema;
 CREATE TABLE cpu (
@@ -108,4 +115,4 @@ CREATE TABLE coupon_transaction (
   basket_discounted_category character varying(200) DEFAULT NULL,
   PRIMARY KEY (id),
   UNIQUE (id)
-) 
+);

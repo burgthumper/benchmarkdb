@@ -130,6 +130,7 @@ def create_inserts_coupon_issued(coupon_issued_types, db, max_lines):
             for line in csv_coupons:
                 if(index>0):
                     #print(line)
+                    print(type(line))
                     values = spin_out_values(line, coupon_issued_types)
                     fields = spin_out_fields(coupon_issued_types, db)
                     insert_sql = "INSERT INTO coupon_issued (" + fields + ") VALUES (" + values + ");\n"

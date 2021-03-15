@@ -27,7 +27,8 @@ def getSampleCPUData():
     var_virtual_memory_avail = psutil.virtual_memory().available * 100 / psutil.virtual_memory().total
     #print(var_virtual_memory_avail)
 
-    var_cpu_percent = (psutil.cpu_percent(interval=0.25, percpu=False))
+    var_cpu_percent = (psutil.cpu_percent(interval=0.01, percpu=False))
+    var_cpu_percent# = (psutil.cpu_percent(interval=0.25, percpu=False))
     #print(var_cpu_percent)
 
     var_getloadavg = psutil.getloadavg()[0]
