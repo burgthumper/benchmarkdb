@@ -15,6 +15,7 @@ To get the services to work together the Dockerfile script must start a supervis
 
 To bring down the docker container from Windows Terminal
   PS C:\projects\benchmarkdb\docker> docker-compose down
+  PS C:\projects\benchmarkdb\docker> docker volume rm $(docker volume ls -q)
   PS C:\projects\benchmarkdb\docker> docker system prune -a
   
 To start the container and services from Windows Terminal
